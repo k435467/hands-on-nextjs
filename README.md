@@ -7,6 +7,13 @@ Practice [the nextjs tutorial](https://nextjs.org/learn).
   - [Navigate Between Pages](#navigate-between-pages)
     - [Link Component](#link-component)
   - [Assets, Metadata, and CSS](#assets-metadata-and-css)
+    - [Assets and Images](#assets-and-images)
+    - [Metadata and Head](#metadata-and-head)
+    - [CSS Sytling](#css-sytling)
+      - [Styled-JSX](#styled-jsx)
+      - [CSS Module](#css-module)
+      - [Global Styles](#global-styles)
+      - [Styling Tips](#styling-tips)
   - [Pre-rendering and Data Fetching](#pre-rendering-and-data-fetching)
   - [Dynamic Routes](#dynamic-routes)
   - [API Routes](#api-routes)
@@ -80,6 +87,100 @@ Also see: **Code splitting and prefetching**.
 **Note:** If we need to add **attributes**, add it to the `<a>` tag, not to the `<Link>` tag.
 
 ## Assets, Metadata, and CSS
+
+### Assets and Images
+
+- `public/images` directory
+- lazy loaded
+- resizing & optimizing
+
+```jsx
+import Image from "next/image";
+
+const YourComponent = () => (
+  <Image
+    priority // the image is preloaded with this attribute, otherwise it is lazy loaded.
+    src="/images/profile.jpg" // Route of the image file
+    height={144} // Desired size with correct aspect ratio
+    width={144} // Desired size with correct aspect ratio
+    alt="Your Name"
+  />
+);
+```
+
+### Metadata and Head
+
+```jsx
+import Head from "next/head";
+```
+
+```jsx
+export default function FirstPost() {
+  return (
+    <>
+      <Head>
+        <title>First Post</title>
+      </Head>
+      <h1>First Post</h1>
+    </>
+  );
+}
+```
+
+### CSS Sytling
+
+#### Styled-JSX
+
+`pages/index.js`
+
+Write CSS directly in .js files.
+
+```jsx
+<style jsx>{`
+  …
+`}</style>
+```
+
+#### CSS Module
+
+It scope styles at the component level.
+
+- Import the CSS file and assign a name to it, like `styles`
+- Use `styles.container` as the `className`
+
+`components/layout.js`
+
+```jsx
+import styles from "./layout.module.css";
+
+export default function Layout({ children }) {
+  return <div className={styles.container}>{children}</div>;
+}
+```
+
+For multiple components. `styles/utils.module.css`
+
+**Important**: To use CSS Module, the CSS file name must end with `.module.cs`.
+
+#### Global Styles
+
+To load global CSS files, create a file called `pages/_app.js` with the following content:
+
+```jsx
+import "../styles/global.css";
+
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
+```
+
+**Important:** Need to restart the dev server when we add `pages/_app.js`.
+
+#### Styling Tips
+
+- Using **classnames** library to toggle classes
+- Customizing **PostCSS** Config. **Wailwind CSS**.
+- Using **Sass**
 
 ## Pre-rendering and Data Fetching
 
