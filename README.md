@@ -15,6 +15,7 @@ Practice [the nextjs tutorial](https://nextjs.org/learn).
       - [Global Styles](#global-styles)
       - [Styling Tips](#styling-tips)
   - [Pre-rendering and Data Fetching](#pre-rendering-and-data-fetching)
+    - [Static Generation with Data using getStaticProps](#static-generation-with-data-using-getstaticprops)
   - [Dynamic Routes](#dynamic-routes)
   - [API Routes](#api-routes)
   - [Deploying Your Next.js App](#deploying-your-nextjs-app)
@@ -183,6 +184,28 @@ export default function App({ Component, pageProps }) {
 - Using **Sass**
 
 ## Pre-rendering and Data Fetching
+
+- **Static Generation** is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then reused on each request.
+- **Server-side Rendering** is the pre-rendering method that generates the HTML on **each request**.
+
+### Static Generation with Data using getStaticProps
+
+`getStaticProps` runs at build time in prodution, and we can fetch external data and send it as props to the page.
+
+```jsx
+export default function Home(props) { ... }
+
+export async function getStaticProps() {
+  // Get external data from the file system, API, DB, etc.
+  const data = ...
+
+  // The value of the `props` key will be
+  //  passed to the `Home` component
+  return {
+    props: ...
+  }
+}
+```
 
 ## Dynamic Routes
 
