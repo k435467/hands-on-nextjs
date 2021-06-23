@@ -16,6 +16,8 @@ Practice [the nextjs tutorial](https://nextjs.org/learn).
       - [Styling Tips](#styling-tips)
   - [Pre-rendering and Data Fetching](#pre-rendering-and-data-fetching)
     - [Static Generation with Data using getStaticProps](#static-generation-with-data-using-getstaticprops)
+    - [Fetching Data at Request Time with getServerSideProps](#fetching-data-at-request-time-with-getserversideprops)
+    - [Client-side Rendering with SWR Hook](#client-side-rendering-with-swr-hook)
   - [Dynamic Routes](#dynamic-routes)
   - [API Routes](#api-routes)
   - [Deploying Your Next.js App](#deploying-your-nextjs-app)
@@ -204,6 +206,41 @@ export async function getStaticProps() {
   return {
     props: ...
   }
+}
+```
+
+### Fetching Data at Request Time with getServerSideProps
+
+```jsx
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      // props for your component
+    },
+  };
+}
+```
+
+Its parameter (**context**) contains request specific parameters.
+
+### Client-side Rendering with SWR Hook
+
+highly recommended.
+
+- handles caching
+- revalidation
+- focus tracking
+- refetching on interval
+
+```jsx
+import useSWR from "swr";
+
+function Profile() {
+  const { data, error } = useSWR("/api/user", fetch);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+  return <div>hello {data.name}!</div>;
 }
 ```
 
