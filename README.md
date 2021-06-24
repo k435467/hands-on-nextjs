@@ -246,6 +246,10 @@ function Profile() {
 
 ## Dynamic Routes
 
+Staticlly generate pages with paths that depend on external data. This enables **dynamic URLs** in Next.js.
+
+![image: How to Statically Generate Pages with Dynamic Routes](https://nextjs.org/static/images/learn/dynamic-routes/how-to-dynamic-routes.png)
+
 ## API Routes
 
 ## Deploying Your Next.js App
