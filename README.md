@@ -252,6 +252,25 @@ Staticlly generate pages with paths that depend on external data. This enables *
 
 ## API Routes
 
+Serverless functions. By creating a function inside the `pages/api` directory.
+
+```jsx
+// pages/api/hello.js
+
+// // req = HTTP incoming message, res = HTTP server response
+// export default function handler(req, res) {
+//   // ...
+// }
+
+export default function handler(req, res) {
+  res.status(200).json({ text: "Hello" });
+}
+```
+
+- Do Not Fetch an API Route from **getStaticProps** or **getStaticPaths**
+- **Preview Mode**: When writing a draft on a headless CMS and want to preview the draft immediately, and let Next.js to render these pages at request time instead of build time.
+- Dynamic API Routes
+
 ## Deploying Your Next.js App
 
 ## TypeScript
