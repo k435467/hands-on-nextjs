@@ -26,19 +26,29 @@ Practice [the nextjs tutorial](https://nextjs.org/learn).
 ```text
 root
     components
+        //  react components
+
+    lib
+        // our own ts lib
+
     pages
-        post
-            first-post.js
-        _app.js
-        index.js
+        // page views
+        _app.tsx     // for global styling
+        index.tsx    // path '/'
+
+    posts
+        // for posts .md data
+
     public
-        images
-            profile.jpg
+        // assets
+
     styles
-        global.css
-        utils.module.css
+        // global and utils css
+
     package-lock.json
     package.json
+    tsconfig.json
+
 ```
 
 ## Create a Next.js App
@@ -273,4 +283,20 @@ export default function handler(req, res) {
 
 ## Deploying Your Next.js App
 
+- Custom Domains
+- Environment Variables
+
+**Develop**, **Preview**, **Ship**. Preview deployment for every push by creating a new **pull request**.
+
 ## TypeScript
+
+- touch tsconfig.json
+- starting/restarting the dev server
+- follow the instructions to install TypeScript
+- starting the dev server again
+
+```shell
+npx create-next-app --ts
+# or
+yarn create next-app --typescript
+```
